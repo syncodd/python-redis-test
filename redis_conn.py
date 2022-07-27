@@ -5,9 +5,6 @@ import pickle
 
 class RedisConn:
 
-    #Todo: add values seperately (uav, gcs, etc...)
-
-
     def __init__(self, host='localhost', port=6379, db=0, reset_values=True):
 
         self.client = redis.Redis(host=host, port=port, db=db)
@@ -42,7 +39,8 @@ if __name__ == '__main__':
 
     value = ('a', 'b', 'c') #! you can't add tupple directly (need to code st. like pickle)
 
-    r.set_value('test', value)
-    print(r.get_value('test'))
-
-    r.reset_values()
+    while True: #* Limit test
+        r.set_value('test', value)
+        print(r.get_value('test'))
+    else:
+        r.reset_values() #? Test reset values
